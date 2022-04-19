@@ -1,62 +1,175 @@
 package edu.quinnipiac.ser210.planetsapp;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DescriptionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class DescriptionFragment extends Fragment
 {
+	private PlanetHandler planetHandler = new PlanetHandler();
+	Spinner planetOne, planetTwo, statSelected;
+	String p1, p2, sStat, s1, s2;
+	private AppCompatActivity context;
+	private String urlAccess = "https://planets-by-api-ninjas.p.rapidapi.com/v1/planet?name=";
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
-
-	public DescriptionFragment()
+	public DescriptionFragment(AppCompatActivity context)
 	{
-		// Required empty public constructor
-	}
-
-	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment using the provided parameters.
-	 *
-	 * @param param1 Parameter 1.
-	 * @param param2 Parameter 2.
-	 * @return A new instance of fragment DescriptionFragment.
-	 */
-	// TODO: Rename and change types and number of parameters
-	public static DescriptionFragment newInstance(String param1, String param2)
-	{
-		DescriptionFragment fragment = new DescriptionFragment();
-		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
-		fragment.setArguments(args);
-		return fragment;
+		this.context = context;
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		if(getArguments() != null)
+	}
+
+	class FetchPlanetStat extends AsyncTask<String, Void, String>
+	{
+
+		@Override
+		protected String doInBackground(String... strings) {
+			HttpURLConnection urlConnection = null;
+			HttpURLConnection urlConnection2 = null;
+			BufferedReader reader = null;
+			BufferedReader reader2 = null;
+			String stat1 = "";
+			String stat2 = "";
+			try
+			{
+				URL url = new URL(urlAccess + strings[0]);
+				urlConnection = (HttpURLConnection) url.openConnection();
+				urlConnection.setRequestMethod("GET");
+				urlConnection.setRequestProperty("X-RapidAPI-Key", "d35f5d26e1mshafc3e3ad636a793p1f9ef0jsnb85767fe0bf6");
+				urlConnection.connect();
+
+				URL url2 = new URL(urlAccess + strings[1]);
+				urlConnection2 = (HttpURLConnection) url2.openConnection();
+				urlConnection2.setRequestMethod("GET");
+				urlConnection2.setRequestProperty("X-RapidAPI-Key", "d35f5d26e1mshafc3e3ad636a793p1f9ef0jsnb85767fe0bf6");
+				urlConnection2.connect();
+
+				InputStream in = urlConnection.getInputStream();
+				if(in == null) return null;
+
+				InputStream in2 = urlConnection2.getInputStream();
+				if(in2 == null) return null;
+
+				reader = new BufferedReader(new InputStreamReader(in));
+				stat1 = getStringFromBuffer(reader);
+
+				reader2 = new BufferedReader(new InputStreamReader(in2));
+				stat2 = getStringFromBuffer(reader2);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return null;
+			}
+			finally
+			{
+				if(urlConnection != null) urlConnection.disconnect();
+				if(urlConnection2 != null) urlConnection2.disconnect();
+				if(reader != null && reader2 != null)
+				{
+					try
+					{
+						reader.close();
+						reader2.close();
+					}
+					catch(Exception e)
+					{
+						return null;
+					}
+				}
+			}
+			s1 = stat1;
+			s2 = stat2;
+			return stat1;
+		}
+
+		private String getStringFromBuffer(BufferedReader reader) throws Exception
 		{
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
+			StringBuffer buffer = new StringBuffer();
+			String line;
+
+			while((line = reader.readLine()) != null)
+			{
+				buffer.append(line + "\n");
+			}
+
+			if(reader != null)
+			{
+				try
+				{
+					reader.close();
+
+				}
+				catch(Exception e)
+				{
+					return null;
+				}
+			}
+
+
+			//call a specific retrieval function based on the selected stat
+			String result = "";
+			if (sStat.equals("Mass"))
+			{
+				result = planetHandler.getPlanetMass(buffer.toString());
+			}
+			else if (sStat.equals("Radius"))
+			{
+				result = planetHandler.getPlanetRadius(buffer.toString());
+			}
+			else if (sStat.equals("Orbital Period"))
+			{
+				result = planetHandler.getPlanetOrbit(buffer.toString());
+			}
+			else if (sStat.equals("Semi-Major Axis"))
+			{
+				result = planetHandler.getPlanetAxis(buffer.toString());
+			}
+			else if (sStat.equals("Temperature"))
+			{
+				result = planetHandler.getPlanetTemperature(buffer.toString());
+			}
+			else if (sStat.equals("Light Years From Earth"))
+			{
+				result = planetHandler.getPlanetDistance(buffer.toString());
+			}
+
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(String s)
+		{
+			TextView planetName1 = (TextView) context.findViewById(R.id.planetText1);
+			TextView planetName2 = (TextView) context.findViewById(R.id.planetText2);
+			TextView planetStat1 = (TextView) context.findViewById(R.id.statView1);
+			TextView planetStat2 = (TextView) context.findViewById(R.id.statView2);
+
+			planetName1.setText(p1);
+			planetName2.setText(p2);
+			planetStat1.setText(s1);
+			planetStat2.setText(s2);
+
 		}
 	}
 
@@ -64,7 +177,32 @@ public class DescriptionFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
 	{
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_description, container, false);
+		View view = inflater.inflate(R.layout.fragment_description, container, false);
+		planetOne = (Spinner) view.findViewById(R.id.spinner1);
+		planetTwo = (Spinner) view.findViewById(R.id.spinner2);
+		statSelected = (Spinner) view.findViewById(R.id.spinnerStat);
+
+		//add country names to country spinners
+		ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planetHandler.planets);
+		planetOne.setAdapter(countryAdapter);
+		planetTwo.setAdapter(countryAdapter);
+
+		//add stat options to stat spinner
+		ArrayAdapter<String> statAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planetHandler.stats);
+		statSelected.setAdapter(statAdapter);
+
+		Button button = (Button) view.findViewById(R.id.button);
+		button.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				p1 = (String) planetOne.getSelectedItem();
+				p2 = (String) planetTwo.getSelectedItem();
+				sStat = (String) statSelected.getSelectedItem();
+				new FetchPlanetStat().execute(p1, p2, sStat);
+			}
+		});
+		return view;
 	}
 }
