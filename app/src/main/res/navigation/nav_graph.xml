@@ -22,14 +22,14 @@
 	</fragment>
 	<fragment
 		android:id="@+id/compareFragment"
-		android:name="edu.quinnipiac.ser210.planetsapp.DescriptionFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.CompareFragment"
 		android:label="fragment_compare"
-		tools:layout="@layout/fragment_description" />
+		tools:layout="@layout/fragment_compare" />
 	<fragment
 		android:id="@+id/descriptionFragment"
-		android:name="edu.quinnipiac.ser210.planetsapp.CompareFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.DescriptionFragment"
 		android:label="fragment_description"
-		tools:layout="@layout/fragment_compare" />
+		tools:layout="@layout/fragment_description" />
 	<fragment
 		android:id="@+id/newsFragment"
 		android:name="edu.quinnipiac.ser210.planetsapp.NewsFragment"

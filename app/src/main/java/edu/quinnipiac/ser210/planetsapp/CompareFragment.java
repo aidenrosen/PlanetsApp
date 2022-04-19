@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class CompareFragment extends Fragment
 	String p1, p2, sStat, s1, s2;
 	private AppCompatActivity context;
 	private String urlAccess = "https://planets-by-api-ninjas.p.rapidapi.com/v1/planet?name=";
+
+	public CompareFragment() {}
 
 	public CompareFragment(AppCompatActivity context)
 	{
@@ -160,15 +163,16 @@ public class CompareFragment extends Fragment
 		@Override
 		protected void onPostExecute(String s)
 		{
-			TextView planetName1 = (TextView) context.findViewById(R.id.planetText1);
-			TextView planetName2 = (TextView) context.findViewById(R.id.planetText2);
-			TextView planetStat1 = (TextView) context.findViewById(R.id.statView1);
-			TextView planetStat2 = (TextView) context.findViewById(R.id.statView2);
+			TextView planetName1 = (TextView) getActivity().findViewById(R.id.planetText1);
+			TextView planetName2 = (TextView) getActivity().findViewById(R.id.planetText2);
+			TextView planetStat1 = (TextView) getActivity().findViewById(R.id.statView1);
+			TextView planetStat2 = (TextView) getActivity().findViewById(R.id.statView2);
 
 			planetName1.setText(p1);
 			planetName2.setText(p2);
 			planetStat1.setText(s1);
 			planetStat2.setText(s2);
+
 
 		}
 	}

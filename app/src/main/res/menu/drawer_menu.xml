@@ -3,20 +3,16 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:showIn="navigation_view">
 
-	<group>
 		<item
 			android:id="@+id/main_frag"
-			android:title="Main"/>
+			android:title="@string/main"/>
 
 		<item
 			android:id="@+id/comp_frag"
-			android:title="Compare"/>
+			android:title="@string/compare"/>
 
 		<item
 			android:id="@+id/news_frag"
-			android:title="News"/>
-
-	</group>
-
+			android:title="@string/news"/>
 
 </menu>
