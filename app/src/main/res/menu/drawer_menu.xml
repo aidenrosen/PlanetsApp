@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:showIn="navigation_view">
+
+	<group>
+		<item
+			android:id="@+id/main_frag"
+			android:title="Main"/>
+
+		<item
+			android:id="@+id/comp_frag"
+			android:title="Compare"/>
+
+		<item
+			android:id="@+id/news_frag"
+			android:title="News"/>
+
+	</group>
+
+
+</menu>

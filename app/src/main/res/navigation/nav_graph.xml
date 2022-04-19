@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/mainFragment">
+
+	<fragment
+		android:id="@+id/mainFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.MainFragment"
+		android:label="fragment_main"
+		tools:layout="@layout/fragment_main" >
+		<action
+			android:id="@+id/action_mainFragment_to_compareFragment"
+			app:destination="@id/compareFragment" />
+		<action
+			android:id="@+id/action_mainFragment_to_descriptionFragment"
+			app:destination="@id/descriptionFragment" />
+		<action
+			android:id="@+id/action_mainFragment_to_newsFragment"
+			app:destination="@id/newsFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/compareFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.CompareFragment"
+		android:label="fragment_compare"
+		tools:layout="@layout/fragment_compare" />
+	<fragment
+		android:id="@+id/descriptionFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.DescriptionFragment"
+		android:label="fragment_description"
+		tools:layout="@layout/fragment_description" />
+	<fragment
+		android:id="@+id/newsFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.NewsFragment"
+		android:label="fragment_news"
+		tools:layout="@layout/fragment_news" />
+</navigation>
