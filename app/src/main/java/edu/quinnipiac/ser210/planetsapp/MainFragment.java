@@ -3,6 +3,7 @@ package edu.quinnipiac.ser210.planetsapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment
+public class MainFragment extends ListFragment
 {
 
 	// TODO: Rename parameter arguments, choose names that match
