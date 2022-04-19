@@ -27,7 +27,7 @@ public class CompareFragment extends Fragment
 	Spinner planetOne, planetTwo, statSelected;
 	String p1, p2, sStat, s1, s2;
 	private AppCompatActivity context;
-	private String urlAccess = "https://planets-by-api-ninjas.p.rapidapi.com/v1/planet?name=";
+	private String urlAccess = "https://planets-by-api-ninjas.p.rapidapi.com/v1/planets?name=";
 
 	public CompareFragment() {}
 
