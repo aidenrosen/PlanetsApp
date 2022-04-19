@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/josep/OneDrive/Documents/Quinnipiac/Spring 2022/SER210/PlanetsApp/app/src/main/res/layout/activity_description.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josep/OneDrive/Documents/Quinnipiac/Spring 2022/SER210/PlanetsApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josep/OneDrive/Documents/Quinnipiac/Spring 2022/SER210/PlanetsApp/app/src/main/res/layout/fragment_description.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josep/OneDrive/Documents/Quinnipiac/Spring 2022/SER210/PlanetsApp/app/src/main/res/layout/fragment_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tbrke/Desktop/School/Spring2022/SER210/PlanetsApp/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/tbrke/Desktop/School/Spring2022/SER210/PlanetsApp/app/src/main/res/layout/fragment_compare.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/tbrke/Desktop/School/Spring2022/SER210/PlanetsApp/app/src/main/res/layout/fragment_main.xml" value="0.25" />
-        <entry key="..\:/Users/tbrke/Desktop/School/Spring2022/SER210/PlanetsApp/app/src/main/res/menu/drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
