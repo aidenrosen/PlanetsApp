@@ -168,10 +168,10 @@ public class CompareFragment extends Fragment
 			TextView planetStat1 = (TextView) getActivity().findViewById(R.id.statView1);
 			TextView planetStat2 = (TextView) getActivity().findViewById(R.id.statView2);
 
-			planetName1.setText(p1);
-			planetName2.setText(p2);
-			planetStat1.setText(s1);
-			planetStat2.setText(s2);
+			planetName1.setText(p2);
+			planetName2.setText(p1);
+			planetStat1.setText(s2);
+			planetStat2.setText(s1);
 
 
 		}

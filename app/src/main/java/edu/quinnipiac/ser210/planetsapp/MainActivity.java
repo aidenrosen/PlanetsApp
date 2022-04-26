@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -17,7 +20,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainFragment.ViewChangeListener
 {
 	public DrawerLayout drawerLayout;
 	public NavController navController;
@@ -87,5 +90,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			drawerLayout.closeDrawer(GravityCompat.START);
 		}
 		else super.onBackPressed();
+	}
+
+	@Override
+	public void onClick(int planetKey) {
+//		DescriptionFragment fragment = new DescriptionFragment();
+//		Bundle bundle = new Bundle();
+//		bundle.putInt("planet", planetKey);
+//		fragment.setArguments(bundle);
+		Bundle bundle = new Bundle();
+		bundle.putInt("planet", planetKey);
+		navController.navigate(R.id.descriptionFragment, bundle);
 	}
 }

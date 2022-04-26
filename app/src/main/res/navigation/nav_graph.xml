@@ -25,11 +25,17 @@
 		android:name="edu.quinnipiac.ser210.planetsapp.CompareFragment"
 		android:label="fragment_compare"
 		tools:layout="@layout/fragment_compare" />
+
 	<fragment
 		android:id="@+id/descriptionFragment"
 		android:name="edu.quinnipiac.ser210.planetsapp.DescriptionFragment"
 		android:label="fragment_description"
-		tools:layout="@layout/fragment_description" />
+		tools:layout="@layout/fragment_description" >
+		<argument
+			android:name="planetKey"
+			app:argType="integer"
+			android:defaultValue="0" />
+	</fragment>
 	<fragment
 		android:id="@+id/newsFragment"
 		android:name="edu.quinnipiac.ser210.planetsapp.NewsFragment"

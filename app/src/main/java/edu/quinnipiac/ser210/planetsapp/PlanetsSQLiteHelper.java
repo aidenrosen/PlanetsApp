@@ -10,8 +10,8 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 {
 	private static final String NAME = "Planets_database";
 	private static final String TABLE = "planet_table";
-	private static final String KEY_ID = "_id";
-	private static final String IS_FAVORITE= "is_fav";
+	public static final String KEY_ID = "_id";
+	public static final String IS_FAVORITE= "is_fav";
 
 	public PlanetsSQLiteHelper(@Nullable Context context)
 	{
