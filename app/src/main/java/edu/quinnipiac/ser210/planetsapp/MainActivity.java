@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	public NavigationView navigationView;
 	public NavHostFragment navHostFragment;
 	public Toolbar toolbar;
+	private SQLiteDatabase db;
+	private PlanetsSQLiteHelper dbHelper;
 
 
 	@Override
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		//Navigation code
 		drawerLayout = findViewById(R.id.drawer_layout);
 		navigationView = findViewById(R.id.navigationView);
 		navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		NavigationUI.setupWithNavController(navigationView, navController);
 		navigationView.setNavigationItemSelectedListener(this);
 
+		//SQL Code
+		dbHelper = new PlanetsSQLiteHelper(this);
+		db = dbHelper.getWritableDatabase();
 
 	}
 

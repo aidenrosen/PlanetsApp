@@ -4,9 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class PlanetHandler {
-    public String[] planets = new String[]{"Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn",
+    public static String[] planets = new String[]{"Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn",
             "Uranus", "Neptune"};
-    public String[] stats = new String[]{"Mass", "Radius", "Orbital Period", "Semi-Major Axis",
+    public static String[] stats = new String[]{"Mass", "Radius", "Orbital Period", "Semi-Major Axis",
             "Temperature", "Light Years From Earth"};
 
     public PlanetHandler() {

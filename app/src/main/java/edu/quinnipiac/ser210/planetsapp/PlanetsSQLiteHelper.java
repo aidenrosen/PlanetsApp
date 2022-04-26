@@ -13,10 +13,11 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 	private static final String KEY_ID = "_id";
 	private static final String IS_FAVORITE= "is_fav";
 
-	public PlanetsSQLiteHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version)
+	public PlanetsSQLiteHelper(@Nullable Context context)
 	{
-		super(context, name, factory, version);
+		super(context, NAME, null, 1);
 	}
+
 
 	@Override
 	public void onCreate(SQLiteDatabase sqLiteDatabase)
