@@ -32,7 +32,7 @@ import java.util.List;
 public class MainFragment extends Fragment
 {
 
-	private ArrayList<String> favs = new ArrayList<>();
+	//private ArrayList<String> favs = new ArrayList<>();
 
 	public interface ViewChangeListener{
 		public void onClick(int planetKey);
@@ -73,18 +73,18 @@ public class MainFragment extends Fragment
 			}
 		});
 
-		PlanetsSQLiteHelper dbHelper = new PlanetsSQLiteHelper(this.getContext());
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-		Cursor cursor = db.query(PlanetsSQLiteHelper.TABLE, new String[]{PlanetsSQLiteHelper.PLANET, PlanetsSQLiteHelper.IS_FAVORITE}, null, null, null, null,null);
-		cursor.moveToFirst();
-		while(!cursor.isAfterLast())
-		{
-			favs.add(cursor.getString(0));
-			cursor.moveToNext();
-		}
-
-		planetAdapter.notifyDataSetChanged();
+//		PlanetsSQLiteHelper dbHelper = new PlanetsSQLiteHelper(this.getContext());
+//		SQLiteDatabase db = dbHelper.getWritableDatabase();
+//
+//		Cursor cursor = db.query(PlanetsSQLiteHelper.TABLE, new String[]{PlanetsSQLiteHelper.PLANET, PlanetsSQLiteHelper.IS_FAVORITE}, null, null, null, null,null);
+//		cursor.moveToFirst();
+//		while(!cursor.isAfterLast())
+//		{
+//			favs.add(cursor.getString(0));
+//			cursor.moveToNext();
+//		}
+//
+//		planetAdapter.notifyDataSetChanged();
 		return view;
 	}
 

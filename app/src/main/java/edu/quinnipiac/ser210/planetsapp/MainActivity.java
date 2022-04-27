@@ -5,35 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainFragment.ViewChangeListener
 {
@@ -69,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		navigationView.setNavigationItemSelectedListener(this);
 		lv = (ListView) findViewById(R.id.list);
 
-		//SQL Code
-		dbHelper = new PlanetsSQLiteHelper(this);
-		db = dbHelper.getWritableDatabase();
+//		//SQL Code
+//		dbHelper = new PlanetsSQLiteHelper(this);
+//		db = dbHelper.getWritableDatabase();
 
 
 	}
@@ -127,13 +112,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	public void onSelectFavorite(View view)
 	{
 		ImageButton button = (ImageButton) view;
+
 		String tag = (String) button.getTag(R.id.positionOnList);
 		int position = Integer.parseInt(tag);
-		if(button.getDrawable().equals(R.drawable.fav_selected_foreground) || button.getTag(R.id.drawable).equals(R.drawable.fav_selected_foreground))
+
+		Drawable currDrawable = button.getDrawable();
+		Drawable favSelected = getResources().getDrawable(R.drawable.fav_selected_foreground);
+		if(currDrawable.getConstantState().equals(favSelected.getConstantState())) // ||
 		{
 			//Set the image and tag of the button
 			button.setImageResource(R.drawable.fav_not_selected_foreground);
-			button.setTag(R.id.drawable, R.drawable.fav_not_selected_foreground);
+			button.setTag(R.drawable.fav_not_selected_foreground);
 
 			//Remove from database
 			planetsDataSource.deletePlanet(PlanetHandler.planets[position]);
@@ -141,11 +130,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		else
 		{
 			button.setImageResource(R.drawable.fav_selected_foreground);
-			button.setTag(R.id.drawable, R.drawable.fav_selected_foreground);
+			button.setTag(R.drawable.fav_selected_foreground);
 
 			//Add to database
 			planetsDataSource.addPlanet(PlanetHandler.planets[position]);
 
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		planetsDataSource.close();
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		planetsDataSource.open();
+		super.onResume();
 	}
 }
