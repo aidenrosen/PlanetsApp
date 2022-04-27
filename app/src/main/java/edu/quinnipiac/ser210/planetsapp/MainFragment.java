@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,14 +13,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +31,8 @@ import java.util.List;
 
 public class MainFragment extends Fragment
 {
+
+	private ArrayList<String> favs = new ArrayList<>();
 
 	public interface ViewChangeListener{
 		public void onClick(int planetKey);
@@ -64,6 +72,34 @@ public class MainFragment extends Fragment
 				planetAdapter.notifyDataSetChanged();
 			}
 		});
+
+		PlanetsSQLiteHelper dbHelper = new PlanetsSQLiteHelper(this.getContext());
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		Cursor cursor = db.query(PlanetsSQLiteHelper.TABLE, new String[]{PlanetsSQLiteHelper.PLANET, PlanetsSQLiteHelper.IS_FAVORITE}, null, null, null, null,null);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast())
+		{
+			favs.add(cursor.getString(0));
+			cursor.moveToNext();
+		}
+
+		for(int i = 0; i < 7; i++)
+		{
+			View v = lv.getAdapter().getView(i, null, null);
+			TextView textView = (TextView) v.findViewById(R.id.label);
+			String planet= (String) textView.getText();
+			ImageButton button = (ImageButton) v.findViewById(R.id.favorite);
+			for(int j = 0; j < favs.size(); j++)
+			{
+				if(planet.equals(favs.get(j)))
+				{
+					button.setImageResource(R.drawable.fav_selected_foreground);
+				}
+			}
+
+		}
+
 		return view;
 	}
 

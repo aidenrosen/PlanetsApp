@@ -13,12 +13,27 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainFragment.ViewChangeListener
 {
@@ -29,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	public Toolbar toolbar;
 	private SQLiteDatabase db;
 	private PlanetsSQLiteHelper dbHelper;
+	private ListView lv;
 
 
 	@Override
@@ -48,10 +64,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
 		NavigationUI.setupWithNavController(navigationView, navController);
 		navigationView.setNavigationItemSelectedListener(this);
+		lv = (ListView) findViewById(R.id.list);
 
 		//SQL Code
 		dbHelper = new PlanetsSQLiteHelper(this);
 		db = dbHelper.getWritableDatabase();
+
 
 	}
 
@@ -101,5 +119,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		Bundle bundle = new Bundle();
 		bundle.putInt("planet", planetKey);
 		navController.navigate(R.id.descriptionFragment, bundle);
+	}
+
+	public void onSelectFavorite(View view)
+	{
+		ImageButton button = (ImageButton) view;
+		int position = lv.getPositionForView(button);
+		if(button.getDrawable().equals(R.drawable.fav_selected_foreground) || button.getTag().equals(R.drawable.fav_selected_foreground))
+		{
+			//Set the image and tag of the button
+			button.setImageResource(R.drawable.fav_not_selected_foreground);
+			button.setTag(R.drawable.fav_not_selected_foreground);
+
+			//Remove from database
+			db.delete(PlanetsSQLiteHelper.TABLE, PlanetsSQLiteHelper.PLANET + " = '" + PlanetHandler.planets[position] + "'", null);
+		}
+		else
+		{
+			button.setImageResource(R.drawable.fav_selected_foreground);
+			button.setTag(R.drawable.fav_selected_foreground);
+
+			//Add to database
+			ContentValues values = new ContentValues();
+			values.put(PlanetsSQLiteHelper.PLANET, PlanetHandler.planets[position]);
+			values.put(PlanetsSQLiteHelper.IS_FAVORITE, true);
+			db.insert(PlanetsSQLiteHelper.TABLE,null, values);
+
+		}
 	}
 }
