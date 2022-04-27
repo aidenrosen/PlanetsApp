@@ -22,7 +22,7 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 
 	public PlanetsSQLiteHelper(@Nullable Context context)
 	{
-		super(context, NAME, null, 9);
+		super(context, NAME, null, 10);
 	}
 
 

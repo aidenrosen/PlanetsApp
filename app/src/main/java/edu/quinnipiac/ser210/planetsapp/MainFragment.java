@@ -99,6 +99,7 @@ public class MainFragment extends Fragment
 			}
 
 		}
+		planetAdapter.notifyDataSetChanged();
 
 		return view;
 	}

@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		navController = navHostFragment.getNavController();
 		NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
 		planetsDataSource = new PlanetsDataSource(this);
+		planetsDataSource.open();
 		NavigationUI.setupWithNavController(navigationView, navController);
 		navigationView.setNavigationItemSelectedListener(this);
 		lv = (ListView) findViewById(R.id.list);
