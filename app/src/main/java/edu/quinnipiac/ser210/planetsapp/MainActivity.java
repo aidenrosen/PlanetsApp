@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private SQLiteDatabase db;
 	private PlanetsSQLiteHelper dbHelper;
 	private ListView lv;
+	private PlanetsDataSource planetsDataSource;
 
 
 	@Override
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 		navController = navHostFragment.getNavController();
 		NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+		planetsDataSource = new PlanetsDataSource(this);
 		NavigationUI.setupWithNavController(navigationView, navController);
 		navigationView.setNavigationItemSelectedListener(this);
 		lv = (ListView) findViewById(R.id.list);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			button.setTag(R.drawable.fav_not_selected_foreground);
 
 			//Remove from database
-			db.delete(PlanetsSQLiteHelper.TABLE, PlanetsSQLiteHelper.PLANET + " = '" + PlanetHandler.planets[position] + "'", null);
+			planetsDataSource.deletePlanet(PlanetHandler.planets[position]);
 		}
 		else
 		{
@@ -140,10 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			button.setTag(R.drawable.fav_selected_foreground);
 
 			//Add to database
-			ContentValues values = new ContentValues();
-			values.put(PlanetsSQLiteHelper.PLANET, PlanetHandler.planets[position]);
-			values.put(PlanetsSQLiteHelper.IS_FAVORITE, true);
-			db.insert(PlanetsSQLiteHelper.TABLE,null, values);
+			planetsDataSource.addPlanet(PlanetHandler.planets[position]);
 
 		}
 	}

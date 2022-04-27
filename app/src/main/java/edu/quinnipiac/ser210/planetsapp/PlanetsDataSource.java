@@ -31,6 +31,7 @@ public class PlanetsDataSource {
     {
         ContentValues values = new ContentValues();
         values.put(PlanetsSQLiteHelper.PLANET, planet);
+        values.put(PlanetsSQLiteHelper.IS_FAVORITE, true);
 
         long insertId = database.insert(PlanetsSQLiteHelper.TABLE, null, values);
 
