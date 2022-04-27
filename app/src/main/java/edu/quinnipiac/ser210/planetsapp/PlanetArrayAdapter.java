@@ -1,6 +1,8 @@
 package edu.quinnipiac.ser210.planetsapp;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +15,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class PlanetArrayAdapter extends ArrayAdapter<String> {
 
     private final Context context;
     private final String[] values;
+    public static boolean[] fav = new boolean[8];
 
     public PlanetArrayAdapter(@NonNull Context context, @NonNull String[] values) {
         super(context, R.layout.rowlayout, values);
@@ -38,8 +43,24 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
         button.setTag(R.id.positionOnList ,position + "");
         //String s = values[position];
 
+        if(fav[position])
+        {
+            button.setImageResource(R.drawable.fav_selected_foreground);
+        }
+        else button.setImageResource(R.drawable.fav_not_selected_foreground);
+
+        for(int i = 0; i < fav.length; i++) Log.v("DEBUG", Boolean.toString(fav[i]));
+
+
+
+
         return rowView;
 
+    }
+
+    public static void flipIndex(int i)
+    {
+        fav[i] = !fav[i];
     }
 
 

@@ -9,6 +9,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainFragment.ViewChangeListener
 {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private PlanetsSQLiteHelper dbHelper;
 	private ListView lv;
 	private PlanetsDataSource planetsDataSource;
+	private ArrayList<String> favs = new ArrayList<String>();
 
 
 	@Override
@@ -55,9 +59,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		lv = (ListView) findViewById(R.id.list);
 
 //		//SQL Code
-//		dbHelper = new PlanetsSQLiteHelper(this);
-//		db = dbHelper.getWritableDatabase();
+		dbHelper = new PlanetsSQLiteHelper(this);
+		db = dbHelper.getWritableDatabase();
 
+		Cursor cursor = db.query(PlanetsSQLiteHelper.TABLE, new String[] {PlanetsSQLiteHelper.PLANET},null,null,null,null,null);
+		cursor.moveToFirst();
+
+		while(!cursor.isAfterLast())
+		{
+			favs.add(cursor.getString(0));
+			cursor.moveToNext();
+		}
+
+		for(int i = 0; i < PlanetArrayAdapter.fav.length; i++)
+		{
+			for(int j = 0; j < favs.size(); j++)
+			{
+				if(PlanetHandler.planets[i].equals(favs.get(j)))
+				{
+					PlanetArrayAdapter.flipIndex(i);
+				}
+			}
+		}
 
 	}
 
@@ -136,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			planetsDataSource.addPlanet(PlanetHandler.planets[position]);
 
 		}
+		PlanetArrayAdapter.flipIndex(position);
 	}
 
 	@Override
