@@ -84,23 +84,7 @@ public class MainFragment extends Fragment
 			cursor.moveToNext();
 		}
 
-		for(int i = 0; i < 7; i++)
-		{
-			View v = lv.getAdapter().getView(i, null, null);
-			TextView textView = (TextView) v.findViewById(R.id.label);
-			String planet= (String) textView.getText();
-			ImageButton button = (ImageButton) v.findViewById(R.id.favorite);
-			for(int j = 0; j < favs.size(); j++)
-			{
-				if(planet.equals(favs.get(j)))
-				{
-					button.setImageResource(R.drawable.fav_selected_foreground);
-				}
-			}
-
-		}
 		planetAdapter.notifyDataSetChanged();
-
 		return view;
 	}
 

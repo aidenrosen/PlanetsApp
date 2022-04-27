@@ -127,12 +127,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	public void onSelectFavorite(View view)
 	{
 		ImageButton button = (ImageButton) view;
-		int position = lv.getPositionForView(button);
-		if(button.getDrawable().equals(R.drawable.fav_selected_foreground) || button.getTag().equals(R.drawable.fav_selected_foreground))
+		String tag = (String) button.getTag(R.id.positionOnList);
+		int position = Integer.parseInt(tag);
+		if(button.getDrawable().equals(R.drawable.fav_selected_foreground) || button.getTag(R.id.drawable).equals(R.drawable.fav_selected_foreground))
 		{
 			//Set the image and tag of the button
 			button.setImageResource(R.drawable.fav_not_selected_foreground);
-			button.setTag(R.drawable.fav_not_selected_foreground);
+			button.setTag(R.id.drawable, R.drawable.fav_not_selected_foreground);
 
 			//Remove from database
 			planetsDataSource.deletePlanet(PlanetHandler.planets[position]);
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		else
 		{
 			button.setImageResource(R.drawable.fav_selected_foreground);
-			button.setTag(R.drawable.fav_selected_foreground);
+			button.setTag(R.id.drawable, R.drawable.fav_selected_foreground);
 
 			//Add to database
 			planetsDataSource.addPlanet(PlanetHandler.planets[position]);

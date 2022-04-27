@@ -5,4 +5,6 @@
 	<string name="main">Main</string>
 	<string name="compare">Compare</string>
 	<string name="news">News</string>
+	<item type="id" name="positionOnList" />
+	<item type="id" name="drawable" />
 </resources>
