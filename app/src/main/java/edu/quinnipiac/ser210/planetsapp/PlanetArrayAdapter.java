@@ -34,7 +34,8 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
         ImageButton button = (ImageButton) rowView.findViewById(R.id.favorite);
         //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         textView.setText(values[position]);
-        //button.setTag(R.id.drawable, R.drawable.fav_not_selected_foreground);
+        button.setImageResource(R.drawable.fav_not_selected_foreground);
+        button.setTag(R.id.drawable, R.drawable.fav_not_selected_foreground);
         button.setTag(R.id.positionOnList ,position + "");
         //String s = values[position];
 
