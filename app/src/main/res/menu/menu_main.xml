@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main_menu"
+	tools:context=".MainActivity">
+
+	<item
+		android:id="@+id/share"
+		android:orderInCategory="100"
+		android:title="Share"
+		android:icon="@drawable/share_foreground"
+		app:showAsAction="ifRoom"
+		app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"/>
+
+	<item
+		android:id="@+id/change_background"
+		android:orderInCategory="200"
+		android:icon="@drawable/settings_foreground"
+		android:title="Change Background"
+		app:showAsAction="ifRoom"/>
+
+</menu>

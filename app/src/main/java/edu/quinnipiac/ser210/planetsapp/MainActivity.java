@@ -1,39 +1,30 @@
 package edu.quinnipiac.ser210.planetsapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
-
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
+
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainFragment.ViewChangeListener
@@ -48,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private ListView lv;
 	private PlanetsDataSource planetsDataSource;
 	private ArrayList<String> favs = new ArrayList<String>();
+	private ShareActionProvider provider;
+	private boolean blueMode = false;
 
 
 	@Override
@@ -94,6 +87,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			}
 		}
 
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		getMenuInflater().inflate(R.menu.menu_main, menu);
+		MenuItem item = menu.findItem(R.id.share);
+		provider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+		setShareActionIntent();
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	private void setShareActionIntent()
+	{
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_TEXT, "Look at this information about planets that I found!");
+		provider.setShareIntent(intent);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
+	{
+		View activity = (View) findViewById(R.id.drawer_layout);
+		if(blueMode)
+		{
+			activity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+		}
+		else activity.setBackgroundColor(Color.parseColor("#00FFFF"));
+		blueMode = !blueMode;
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
