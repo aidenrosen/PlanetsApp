@@ -18,7 +18,7 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 	public static final String IS_FAVORITE= "is_fav";
 
 	public static final String DATABASE_NAME = "planet_table.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 1;
 
 	public PlanetsSQLiteHelper(@Nullable Context context)
 	{
