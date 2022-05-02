@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">PlanetsApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="app_name">PlanetsApp</string>
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="main">Main</string>
 	<string name="compare">Compare</string>
 	<string name="news">News</string>
-	<item type="id" name="positionOnList" />
-	<item type="id" name="drawable" />
+	<item name="positionOnList" type="id" />
+	<item name="drawable" type="id" />
 </resources>
