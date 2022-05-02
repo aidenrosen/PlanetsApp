@@ -111,12 +111,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		View activity = (View) findViewById(R.id.drawer_layout);
-		if(blueMode)
+		if(item.getItemId() == R.id.change_background)
 		{
-			activity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+			if(blueMode)
+			{
+				activity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+			} else activity.setBackgroundColor(Color.parseColor("#00FFFF"));
+			blueMode = !blueMode;
 		}
-		else activity.setBackgroundColor(Color.parseColor("#00FFFF"));
-		blueMode = !blueMode;
 
 		return super.onOptionsItemSelected(item);
 	}
