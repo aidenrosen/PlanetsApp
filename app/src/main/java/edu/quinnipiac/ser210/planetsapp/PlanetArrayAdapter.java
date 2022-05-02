@@ -35,6 +35,7 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
 
         LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //creates a View representing a Java object out of the layer
         View rowView = inflater.inflate(R.layout.rowlayout,parent,false); //reference for TextView
+        ImageView icon = (ImageView) rowView.findViewById(R.id.icon);
         TextView textView = (TextView) rowView.findViewById(R.id.label);
         ImageButton button = (ImageButton) rowView.findViewById(R.id.favorite);
         //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
@@ -44,6 +45,7 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
         button.setTag(R.id.positionOnList ,position + "");
         //String s = values[position];
 
+        //Logic for setting favorite button based on the database
         if(fav[position])
         {
             button.setImageResource(R.drawable.fav_selected_foreground);
@@ -52,8 +54,34 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
 
         for(int i = 0; i < fav.length; i++) Log.v("DEBUG", Boolean.toString(fav[i]));
 
-
-
+        //Logic for row view icons
+        switch(position)
+        {
+            case 0:
+                icon.setImageResource(R.drawable.mercury);
+                break;
+            case 1:
+                icon.setImageResource(R.drawable.venus);
+                break;
+            case 2:
+                icon.setImageResource(R.drawable.earth);
+                break;
+            case 3:
+                icon.setImageResource(R.drawable.mars);
+                break;
+            case 4:
+                icon.setImageResource(R.drawable.jupiter);
+                break;
+            case 5:
+                icon.setImageResource(R.drawable.saturn);
+                break;
+            case 6:
+                icon.setImageResource(R.drawable.uranus);
+                break;
+            case 7:
+                icon.setImageResource(R.drawable.neptune);
+                break;
+        }
 
         return rowView;
 
