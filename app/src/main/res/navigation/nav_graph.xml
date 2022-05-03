@@ -19,6 +19,9 @@
 		<action
 			android:id="@+id/action_mainFragment_to_newsFragment"
 			app:destination="@id/newsFragment" />
+		<action
+			android:id="@+id/action_mainFragment_to_favoritesFragment"
+			app:destination="@id/favoritesFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/compareFragment"
@@ -41,4 +44,9 @@
 		android:name="edu.quinnipiac.ser210.planetsapp.NewsFragment"
 		android:label="fragment_news"
 		tools:layout="@layout/fragment_news" />
+	<fragment
+		android:id="@+id/favoritesFragment"
+		android:name="edu.quinnipiac.ser210.planetsapp.FavoritesFragment"
+		android:label="fragment_favorites"
+		tools:layout="@layout/fragment_favorites" />
 </navigation>

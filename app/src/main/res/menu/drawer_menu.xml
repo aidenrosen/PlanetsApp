@@ -15,4 +15,8 @@
 			android:id="@+id/news_frag"
 			android:title="@string/news"/>
 
+		<item
+			android:id="@+id/fav_frag"
+			android:title="Favorites"/>
+
 </menu>

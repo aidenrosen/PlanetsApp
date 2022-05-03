@@ -32,7 +32,7 @@ import java.util.List;
 public class MainFragment extends Fragment
 {
 
-	private ArrayList<String> favs = new ArrayList<>();
+	public static ArrayList<String> favs = new ArrayList<>();
 
 	public interface ViewChangeListener{
 		public void onClick(int planetKey);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -136,7 +137,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			case R.id.comp_frag:
 				navController.navigate(R.id.compareFragment);
 				break;
-
+			case R.id.fav_frag:
+				navController.navigate(R.id.favoritesFragment);
+				break;
 		}
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -176,6 +179,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		ImageButton button = (ImageButton) view;
 		String tag = (String) button.getTag(R.id.positionOnList);
 		int position = Integer.parseInt(tag);
+//		Drawable currDrawable = button.getDrawable();
+//		Drawable favSelected = getResources().getDrawable(R.drawable.fav_selected_foreground);
+//		if(currDrawable.getConstantState().equals(favSelected.getConstantState()))
 		if(button.getDrawable().equals(R.drawable.fav_selected_foreground) || button.getTag(R.id.drawable).equals(R.drawable.fav_selected_foreground))
 		{
 			//Set the image and tag of the button
@@ -195,5 +201,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 		}
 		PlanetArrayAdapter.flipIndex(position);
+
+
 	}
 }
