@@ -32,7 +32,7 @@ import java.util.List;
 public class MainFragment extends Fragment
 {
 
-	public static ArrayList<String> favs = new ArrayList<>();
+	private static ArrayList<String> favs = new ArrayList<>();
 
 	public interface ViewChangeListener{
 		public void onClick(int planetKey);
@@ -56,6 +56,7 @@ public class MainFragment extends Fragment
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+
 		String[] planetNames = new String[]{"Mercury", "Venus", "Earth", "Mars", "Jupiter",
 			"Saturn", "Uranus", "Neptune"};
 		PlanetArrayAdapter planetAdapter = new PlanetArrayAdapter(
@@ -76,6 +77,8 @@ public class MainFragment extends Fragment
 		PlanetsSQLiteHelper dbHelper = new PlanetsSQLiteHelper(this.getContext());
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+		favs.clear();
+
 		Cursor cursor = db.query(PlanetsSQLiteHelper.TABLE, new String[]{PlanetsSQLiteHelper.PLANET, PlanetsSQLiteHelper.IS_FAVORITE}, null, null, null, null,null);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast())
@@ -92,5 +95,9 @@ public class MainFragment extends Fragment
 	public void onAttach(@NonNull Context context) {
 		super.onAttach(context);
 		this.listener = (ViewChangeListener) context;
+	}
+
+	public static ArrayList<String> getFavs() {
+		return favs;
 	}
 }

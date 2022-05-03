@@ -38,7 +38,7 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
-        this.favs = MainFragment.favs;
+        this.favs = MainFragment.getFavs();
 
         String[] newFavs = new String[favs.size()];
         newFavs = favs.toArray(newFavs);
