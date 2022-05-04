@@ -7,4 +7,17 @@
     <string name="news">News</string>
     <item name="positionOnList" type="id" />
     <item name="drawable" type="id" />
+    <string name="mercury_desc">"The first planet from our Sun. The smallest planet in the solar system. It is also the fastest-rotating and revolving planet. Mercury is a rocky planet, much like our Moon. It has no moons of its own."</string>
+    <string name="venus_desc">"The second planet from our Sun. The hottest planet in the solar system, thanks to its dense atmosphere. It rotates backwards on its axis, and is volcanic in nature. It possesses no moons."</string>
+    <string name="earth_desc">"The third planet from our Sun, and the one we call home. It is perfectly suited for carbon-based lifeforms to thrive, hosting millions of different species in land and water. It has one moon, the Moon."</string>
+    <string name="mars_desc">"The fourth planet from our Sun. A massive desert blankets the expanse of its surface, although it retains its ice caps. The first planet humans have sent drones to. It has two moons:  Phobos and Deimos."</string>
+    <string name="jupiter_desc">"The fifth planet from our Sun. It is the largest planet in the solar system, and is a gas giant. It has a giant red storm on it that has raged for about a century. It has 75 moons, some of which contain water."</string>
+    <string name="saturn_desc">"The sixth planet from our Sun. Famously known for its myriad rings, it is the second gas giant in our solar system. The rings are composed of ice and rock. At least 62 moons orbit Saturn."</string>
+    <string name="uranus_desc">"The seventh planet from our Sun. Classified as an ice giant. It also possesses rings like Saturn, although vertically due to its unique lateral rotation. There are 13 moons surrounding it."</string>
+    <string name="neptune_desc">"The eighth and furthest planet from our Sun. Another ice giant due to the mass of hot and dense fluid of ice occupying its interior. It is extraordinarily windy. It is known to have 14 moons."</string>
+    <string-array name="mercury_news">
+
+        <item></item>
+
+    </string-array>
 </resources>

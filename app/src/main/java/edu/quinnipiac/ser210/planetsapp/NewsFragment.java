@@ -2,61 +2,79 @@ package edu.quinnipiac.ser210.planetsapp;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class NewsFragment extends Fragment
 {
-
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private int imageId, planetKey;
+	private String news, planet;
 
 	public NewsFragment()
 	{
 		// Required empty public constructor
 	}
-
-	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment using the provided parameters.
-	 *
-	 * @param param1 Parameter 1.
-	 * @param param2 Parameter 2.
-	 * @return A new instance of fragment NewsFragment.
-	 */
-	// TODO: Rename and change types and number of parameters
-	public static NewsFragment newInstance(String param1, String param2)
-	{
-		NewsFragment fragment = new NewsFragment();
-		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
-		fragment.setArguments(args);
-		return fragment;
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		if(getArguments() != null)
-		{
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
+
+		String key = "planet";
+		int defaultValue = 0;
+
+		Bundle bundle = this.getArguments();
+		if (bundle != null) {
+			int myInt = bundle.getInt(key, defaultValue);
+			planetKey = myInt;
+			switch (planetKey)
+			{
+				case 0:
+					news = getString(R.string.mercury_desc);
+					imageId = R.drawable.mercury;
+					planet = "Mercury";
+					break;
+				case 1:
+					news = getString(R.string.venus_desc);
+					imageId = R.drawable.venus;
+					planet = "Venus";
+					break;
+				case 2:
+					news = getString(R.string.earth_desc);
+					imageId = R.drawable.earth;
+					planet = "Earth";
+					break;
+				case 3:
+					news = getString(R.string.mars_desc);
+					imageId = R.drawable.mars;
+					planet = "Mars";
+					break;
+				case 4:
+					news = getString(R.string.jupiter_desc);
+					imageId = R.drawable.jupiter;
+					planet = "Jupiter";
+					break;
+				case 5:
+					news = getString(R.string.saturn_desc);
+					imageId = R.drawable.saturn;
+					planet = "Saturn";
+					break;
+				case 6:
+					news = getString(R.string.uranus_desc);
+					imageId = R.drawable.uranus;
+					planet = "Uranus";
+					break;
+				case 7:
+					news = getString(R.string.neptune_desc);
+					imageId = R.drawable.neptune;
+					planet = "Neptune";
+					break;
+			}
 		}
 	}
 
@@ -65,6 +83,17 @@ public class NewsFragment extends Fragment
 							 Bundle savedInstanceState)
 	{
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_news, container, false);
+		View view = inflater.inflate(R.layout.fragment_description, container, false);
+
+		//Set the components of the fragment based on what the user selects
+		TextView description = (TextView) view.findViewById(R.id.news);
+		description.setText(news);
+
+		ImageView image = (ImageView) view.findViewById(R.id.planetImage);
+		image.setImageResource(imageId);
+
+		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle(planet);
+
+		return view;
 	}
 }

@@ -49,10 +49,15 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
         if(fav[position])
         {
             button.setImageResource(R.drawable.fav_selected_foreground);
+            button.setTag(R.id.drawable, R.drawable.fav_selected_foreground);
         }
-        else button.setImageResource(R.drawable.fav_not_selected_foreground);
+        else
+        {
+            button.setImageResource(R.drawable.fav_not_selected_foreground);
+            button.setTag(R.id.drawable, R.drawable.fav_not_selected_foreground);
+        }
 
-        for(int i = 0; i < fav.length; i++) Log.v("DEBUG", Boolean.toString(fav[i]));
+
 
         //Logic for row view icons
         switch(position)

@@ -23,7 +23,7 @@ public class PlanetsDataSourceTest {
     @Before
     public void setUp() throws Exception {
         Context context = ApplicationProvider.getApplicationContext();
-        context.deleteDatabase(PlanetsSQLiteHelper.DATABASE_NAME);
+        context.deleteDatabase(PlanetsSQLiteHelper.NAME);
         planetsDataSource = new PlanetsDataSource(context);
         planetsDataSource.open();
     }
@@ -43,8 +43,7 @@ public class PlanetsDataSourceTest {
 
     @Test
     public void deletePlanet() throws Exception {
-        String addedPlanet = planetsDataSource.addPlanet("Venus");
-        planetsDataSource.deletePlanet(addedPlanet);
+        planetsDataSource.deletePlanet("Mercury");
         List<String> planets = planetsDataSource.getAllPlanets();
         assertEquals(planets.size(),0);
     }

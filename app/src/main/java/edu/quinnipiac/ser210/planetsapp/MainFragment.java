@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -56,7 +57,6 @@ public class MainFragment extends Fragment
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-
 		String[] planetNames = new String[]{"Mercury", "Venus", "Earth", "Mars", "Jupiter",
 			"Saturn", "Uranus", "Neptune"};
 		PlanetArrayAdapter planetAdapter = new PlanetArrayAdapter(
@@ -99,5 +99,12 @@ public class MainFragment extends Fragment
 
 	public static ArrayList<String> getFavs() {
 		return favs;
+	}
+
+	public static void addFav(String fav) {favs.add(fav);}
+
+	public static void removeFav(String fav)
+	{
+		if(favs.contains(fav)) favs.remove(fav);
 	}
 }

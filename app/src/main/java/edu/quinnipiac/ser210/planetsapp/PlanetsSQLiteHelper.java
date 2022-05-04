@@ -16,13 +16,11 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 	public static final String TABLE = "planet_table";
 	public static final String KEY_ID = "_id";
 	public static final String IS_FAVORITE= "is_fav";
-
-	public static final String DATABASE_NAME = "planet_table.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 21;
 
 	public PlanetsSQLiteHelper(@Nullable Context context)
 	{
-		super(context, NAME, null, 15);
+		super(context, NAME, null, DATABASE_VERSION);
 	}
 
 

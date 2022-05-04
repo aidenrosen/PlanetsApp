@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class PlanetsDataSource {
 
     public void deletePlanet(String planet)
     {
-        database.delete(PlanetsSQLiteHelper.TABLE, PlanetsSQLiteHelper.PLANET + " = '" + planet + "'", null);
+        database.delete(PlanetsSQLiteHelper.TABLE, PlanetsSQLiteHelper.PLANET + "= '" + planet + "'", null);
     }
 
     public List<String> getAllPlanets()
@@ -63,7 +64,7 @@ public class PlanetsDataSource {
 
         while(!cursor.isAfterLast())
         {
-            String planet = cursorToPlanet(cursor);
+            String planet = cursor.getString(1);
             planets.add(planet);
             cursor.moveToNext();
         }

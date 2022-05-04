@@ -13,16 +13,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class FavsArrayAdapter extends ArrayAdapter<String> {
 
     private final Context context;
     private final String[] values;
-    public static boolean[] fav = new boolean[8];
+    private static ArrayList<String> favs;
 
     public FavsArrayAdapter(@NonNull Context context, @NonNull String[] values) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
+        favs = MainFragment.getFavs();
+
     }
 
     @NonNull
@@ -69,10 +73,6 @@ public class FavsArrayAdapter extends ArrayAdapter<String> {
 
     }
 
-    public static void flipIndex(int i)
-    {
-        fav[i] = !fav[i];
-    }
 
 
 }

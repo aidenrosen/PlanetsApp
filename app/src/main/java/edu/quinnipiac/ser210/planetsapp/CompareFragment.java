@@ -207,6 +207,9 @@ public class CompareFragment extends Fragment
 				new FetchPlanetStat().execute(p1, p2, sStat);
 			}
 		});
+
+		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle("Compare");
+
 		return view;
 	}
 }

@@ -2,17 +2,19 @@ package edu.quinnipiac.ser210.planetsapp;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DescriptionFragment extends Fragment
 {
-	private int planetKey;
-	private String planetDescription;
+	private int planetKey, imageId;
+	private String planetDescription, planet;
 
 	public DescriptionFragment()
 	{
@@ -34,28 +36,44 @@ public class DescriptionFragment extends Fragment
 			switch (planetKey)
 			{
 				case 0:
-					planetDescription = "You selected Mercury.";
+					planetDescription = getString(R.string.mercury_desc);
+					imageId = R.drawable.mercury;
+					planet = "Mercury";
 					break;
 				case 1:
-					planetDescription = "You selected Venus.";
+					planetDescription = getString(R.string.venus_desc);
+					imageId = R.drawable.venus;
+					planet = "Venus";
 					break;
 				case 2:
-					planetDescription = "You selected Earth.";
+					planetDescription = getString(R.string.earth_desc);
+					imageId = R.drawable.earth;
+					planet = "Earth";
 					break;
 				case 3:
-					planetDescription = "You selected Mars.";
+					planetDescription = getString(R.string.mars_desc);
+					imageId = R.drawable.mars;
+					planet = "Mars";
 					break;
 				case 4:
-					planetDescription = "You selected Jupiter.";
+					planetDescription = getString(R.string.jupiter_desc);
+					imageId = R.drawable.jupiter;
+					planet = "Jupiter";
 					break;
 				case 5:
-					planetDescription = "You selected Saturn.";
+					planetDescription = getString(R.string.saturn_desc);
+					imageId = R.drawable.saturn;
+					planet = "Saturn";
 					break;
 				case 6:
-					planetDescription = "You selected Uranus.";
+					planetDescription = getString(R.string.uranus_desc);
+					imageId = R.drawable.uranus;
+					planet = "Uranus";
 					break;
 				case 7:
-					planetDescription = "You selected Neptune.";
+					planetDescription = getString(R.string.neptune_desc);
+					imageId = R.drawable.neptune;
+					planet = "Neptune";
 					break;
 			}
 		}
@@ -67,8 +85,16 @@ public class DescriptionFragment extends Fragment
 	{
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_description, container, false);
-		TextView description = (TextView) view.findViewById(R.id.planetDesc);
+
+		//Set the components of the fragment based on what the user selects
+		TextView description = (TextView) view.findViewById(R.id.news);
 		description.setText(planetDescription);
+
+		ImageView image = (ImageView) view.findViewById(R.id.planetImage);
+		image.setImageResource(imageId);
+
+		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle(planet);
+
 		return view;
 	}
 }

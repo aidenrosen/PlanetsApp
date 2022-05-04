@@ -140,6 +140,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			case R.id.fav_frag:
 				navController.navigate(R.id.favoritesFragment);
 				break;
+			case R.id.news_frag:
+				navController.navigate(R.id.newsFragment);
+				break;
 		}
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 			//Remove from database
 			planetsDataSource.deletePlanet(PlanetHandler.planets[position]);
+			MainFragment.removeFav(PlanetHandler.planets[position]);
 		}
 		else
 		{
@@ -198,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 			//Add to database
 			planetsDataSource.addPlanet(PlanetHandler.planets[position]);
+			MainFragment.addFav(PlanetHandler.planets[position]);
 
 		}
 		PlanetArrayAdapter.flipIndex(position);
