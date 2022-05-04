@@ -2,19 +2,36 @@ package edu.quinnipiac.ser210.planetsapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.material.tabs.TabLayout;
+
+import org.w3c.dom.Text;
+
+import java.util.Locale;
 
 public class NewsFragment extends Fragment
 {
-	private int imageId, planetKey;
-	private String news, planet;
+	private int imageId;
+	private String[] news;
+	TextView t1, t2, t3;
+	View mView;
+	ImageView imageView;
 
 	public NewsFragment()
 	{
@@ -24,58 +41,9 @@ public class NewsFragment extends Fragment
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
-		String key = "planet";
+		setHasOptionsMenu(true);
 		int defaultValue = 0;
-
-		Bundle bundle = this.getArguments();
-		if (bundle != null) {
-			int myInt = bundle.getInt(key, defaultValue);
-			planetKey = myInt;
-			switch (planetKey)
-			{
-				case 0:
-					news = getString(R.string.mercury_desc);
-					imageId = R.drawable.mercury;
-					planet = "Mercury";
-					break;
-				case 1:
-					news = getString(R.string.venus_desc);
-					imageId = R.drawable.venus;
-					planet = "Venus";
-					break;
-				case 2:
-					news = getString(R.string.earth_desc);
-					imageId = R.drawable.earth;
-					planet = "Earth";
-					break;
-				case 3:
-					news = getString(R.string.mars_desc);
-					imageId = R.drawable.mars;
-					planet = "Mars";
-					break;
-				case 4:
-					news = getString(R.string.jupiter_desc);
-					imageId = R.drawable.jupiter;
-					planet = "Jupiter";
-					break;
-				case 5:
-					news = getString(R.string.saturn_desc);
-					imageId = R.drawable.saturn;
-					planet = "Saturn";
-					break;
-				case 6:
-					news = getString(R.string.uranus_desc);
-					imageId = R.drawable.uranus;
-					planet = "Uranus";
-					break;
-				case 7:
-					news = getString(R.string.neptune_desc);
-					imageId = R.drawable.neptune;
-					planet = "Neptune";
-					break;
-			}
-		}
+		news = new String[]{"", "", ""};
 	}
 
 	@Override
@@ -83,17 +51,91 @@ public class NewsFragment extends Fragment
 							 Bundle savedInstanceState)
 	{
 		// Inflate the layout for this fragment
-		View view = inflater.inflate(R.layout.fragment_description, container, false);
+		mView = inflater.inflate(R.layout.fragment_news, container, false);
+		setHasOptionsMenu(true);
 
-		//Set the components of the fragment based on what the user selects
-		TextView description = (TextView) view.findViewById(R.id.news);
-		description.setText(news);
+		t1 = (TextView) mView.findViewById(R.id.news1);
+		t2 = (TextView) mView.findViewById(R.id.news2);
+		t3 = (TextView) mView.findViewById(R.id.news3);
+		imageView = (ImageView) mView.findViewById(R.id.newsImage);
 
-		ImageView image = (ImageView) view.findViewById(R.id.planetImage);
-		image.setImageResource(imageId);
+		String[] startNews = getResources().getStringArray(R.array.mercury_news);
 
-		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle(planet);
+		t1.setText(startNews[0]);
+		t2.setText(startNews[1]);
+		t3.setText(startNews[2]);
+		imageView.setImageResource(R.drawable.mercury);
 
-		return view;
+		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle("");
+		return mView;
 	}
+
+	@Override
+	public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater)
+	{
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.news_menu, menu);
+		MenuItem item = menu.findItem(R.id.spinner);
+		Spinner spinner = (Spinner) item.getActionView();
+
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.planets, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+			{
+				switch(PlanetHandler.planets[i].toLowerCase())
+				{
+					case "mercury":
+						news = getResources().getStringArray(R.array.mercury_news);
+						imageId = R.drawable.mercury;
+						break;
+					case "venus":
+						news = getResources().getStringArray(R.array.venus_news);
+						imageId = R.drawable.venus;
+						break;
+					case "earth":
+						news = getResources().getStringArray(R.array.earth_news);
+						imageId = R.drawable.earth;
+						break;
+					case "mars":
+						news = getResources().getStringArray(R.array.mars_news);
+						imageId = R.drawable.mars;
+						break;
+					case "jupiter":
+						news = getResources().getStringArray(R.array.jupiter_news);
+						imageId = R.drawable.jupiter;
+						break;
+					case "saturn":
+						news = getResources().getStringArray(R.array.saturn_news);
+						imageId = R.drawable.saturn;
+						break;
+					case "uranus":
+						news = getResources().getStringArray(R.array.uranus_news);
+						imageId = R.drawable.uranus;
+						break;
+					case "neptune":
+						news = getResources().getStringArray(R.array.neptune_news);
+						imageId = R.drawable.neptune;
+						break;
+				}
+
+				t1.setText(news[0]);
+				t2.setText(news[1]);
+				t3.setText(news[2]);
+
+				imageView = (ImageView) mView.findViewById(R.id.newsImage);
+				imageView.setImageResource(imageId);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterView)
+			{
+
+			}
+		});
+	}
+
 }
