@@ -7,7 +7,7 @@
 	tools:context=".DescriptionFragment">
 
 	<ImageView
-		android:id="@+id/planetImage"
+		android:id="@+id/newsImage"
 		android:layout_width="332dp"
 		android:layout_height="243dp"
 		android:layout_marginTop="16dp"
@@ -23,7 +23,7 @@
 		android:gravity="center"
 		android:textSize="20dp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="@+id/planetImage"
+		app:layout_constraintEnd_toEndOf="@+id/newsImage"
 		app:layout_constraintHorizontal_bias="0.169"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"

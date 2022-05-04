@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private ArrayList<String> favs = new ArrayList<String>();
 	private ShareActionProvider provider;
 	private boolean blueMode = false;
+	private int currFrag;
 
 
 	@Override
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		View activity = (View) findViewById(R.id.drawer_layout);
+
 		if(item.getItemId() == R.id.change_background)
 		{
 			if(blueMode)
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			} else activity.setBackgroundColor(Color.parseColor("#00FFFF"));
 			blueMode = !blueMode;
 		}
+		else if(currFrag == R.id.news_frag) return false;
 
 		return super.onOptionsItemSelected(item);
 	}
@@ -133,15 +137,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		{
 			case R.id.main_frag:
 				navController.navigate(R.id.mainFragment);
+				currFrag = R.id.main_frag;
 				break;
 			case R.id.comp_frag:
 				navController.navigate(R.id.compareFragment);
+				currFrag = R.id.comp_frag;
 				break;
 			case R.id.fav_frag:
 				navController.navigate(R.id.favoritesFragment);
+				currFrag = R.id.fav_frag;
 				break;
 			case R.id.news_frag:
 				navController.navigate(R.id.newsFragment);
+				currFrag = R.id.news_frag;
 				break;
 		}
 

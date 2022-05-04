@@ -17,7 +17,80 @@
     <string name="neptune_desc">"The eighth and furthest planet from our Sun. Another ice giant due to the mass of hot and dense fluid of ice occupying its interior. It is extraordinarily windy. It is known to have 14 moons."</string>
     <string-array name="mercury_news">
 
+        <item>2022: Mercury has Magnetic Storms</item>
+        <item>2021: BepiColombo makes its first flyby of Mercury</item>
+        <item>2018: ESA\'s BepiColombo is launched</item>
+
+    </string-array>
+
+    <string-array name="venus_news">
+
+        <item>2022: The first visible light images of the surface of Venus is captured</item>
+        <item>2021: Three new missions to Venus were announced for the late 2020s</item>
+        <item>2021: Scientists say there might be volcanic activity on Venus</item>
+
+    </string-array>
+
+    <string-array name="earth_news">
+
+        <item>2022: The fate of our planet hinges on soil, says UN scientist</item>
+        <item>2021: NASA Spacecraft takes off to visit asteroids around Jupiter</item>
+        <item>2021: Molecule discovery proves there could be life beyond our solar system</item>
+
+    </string-array>
+
+    <string-array name="mars_news">
+
+        <item>2022: Mars helicopter scouts ridgeline for Perseverance Science Team</item>
+        <item>2022: Wreckage on Mars captured by NASA\'s Ingenuity helicopter</item>
+        <item>2022: Earth needs to ensure Mars rocks don\'t have alien germs</item>
+
+    </string-array>
+
+    <string-array name="jupiter_news">
+
+        <item>2022: Venus and Jupiter shine together over Rome</item>
+        <item>2022: Lava and frost may form the mysterious lumps on Jupiter\'s moon lo</item>
+        <item>2022: Jupiter\'s moon Europa could be suitable for life, UT research said</item>
+
+    </string-array>
+
+    <string-array name="saturn_news">
+
+        <item>2022: Saturn\'s moon Titan bears a striking resemblance to Earth</item>
+        <item>2021: Experiments validate the possibility of helium rain inside Jupiter and Saturn</item>
+        <item>2021: Hubble sees changing seasons on Saturn</item>
+
+    </string-array>
+
+    <string-array name="uranus_news">
+
+        <item>2022: NASA told to make mission to Uranus ASAP</item>
+        <item>2022: Scientists hope to visit Uranus by 2031</item>
         <item></item>
 
     </string-array>
+
+    <string-array name="neptune_news">
+
+        <item>2022: Neptune just experienced an unexplained temperature shift</item>
+        <item>2022: Possible explanation for the difference in the blue hues of Uranus and Neptune</item>
+        <item></item>
+
+
+    </string-array>
+
+    <string-array name="planets">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
+
 </resources>
