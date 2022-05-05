@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Name: FavoritesFragment.java
+	Date: 05/04/2022
+	Description: Displays the favorites selected in the MainFragment in another ListView.
  */
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -24,6 +27,7 @@ import java.util.List;
 
 public class FavoritesFragment extends Fragment {
 
+    //instance variables
     private ArrayList<String> favs;
     private MainFragment.ViewChangeListener listener;
 
@@ -42,6 +46,7 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
+        //retrieve whatever is a Favorite from the MainFragment
         this.favs = MainFragment.getFavs();
 
         String[] newFavs = new String[favs.size()];
@@ -51,6 +56,7 @@ public class FavoritesFragment extends Fragment {
                 getActivity(),
                 newFavs);
 
+        //ListView
         ListView lv = (ListView) view.findViewById(R.id.favList);
         lv.setAdapter(favsArrayAdapter);
 
@@ -80,6 +86,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        //refers to MainActivity as a listener in order to obtain context
         this.listener = (MainFragment.ViewChangeListener) context;
     }
 }

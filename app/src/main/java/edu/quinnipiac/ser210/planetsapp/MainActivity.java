@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Date: 05/04/2022
+	Class Name: MainActivity.java
+	Description: main frame for the entire app; hosts MainFragment and connects to all other app fragments.
  */
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,6 +37,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainFragment.ViewChangeListener
 {
+	//instance variables
 	public DrawerLayout drawerLayout;
 	public NavController navController;
 	public NavigationView navigationView;
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		//refer to toolbar
 		toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		navigationView.setNavigationItemSelectedListener(this);
 		lv = (ListView) findViewById(R.id.list);
 
+		//open SQLite database where favorites will be stored
 		dbHelper = new PlanetsSQLiteHelper(this);
 		db = dbHelper.getWritableDatabase();
 
@@ -95,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 	}
 
+	//sets up an Options widget in the Toolbar
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -105,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	//sets up the Share widget in Toolbar
 	private void setShareActionIntent()
 	{
 		Intent intent = new Intent(Intent.ACTION_SEND);
@@ -113,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		provider.setShareIntent(intent);
 	}
 
+	//background color changes when pressing Options widget
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
@@ -167,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		return NavigationUI.navigateUp(navController, drawerLayout);
 	}
 
+	//close Drawer when back button is pressed
 	@Override
 	public void onBackPressed()
 	{
@@ -177,18 +188,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		else super.onBackPressed();
 	}
 
-
+	//upon clicking any Planet in the MainFragment ListView
 	@Override
 	public void onClick(int planetKey) {
-//		DescriptionFragment fragment = new DescriptionFragment();
-//		Bundle bundle = new Bundle();
-//		bundle.putInt("planet", planetKey);
-//		fragment.setArguments(bundle);
 		Bundle bundle = new Bundle();
 		bundle.putInt("planet", planetKey);
 		navController.navigate(R.id.descriptionFragment, bundle); //Send which planet the user clicks on to the description fragment
 	}
 
+	//code for saving a favorite and updating its image to reflect whether a Planet is a favorite or not
 	public void onSelectFavorite(View view)
 	{
 		ImageButton button = (ImageButton) view;

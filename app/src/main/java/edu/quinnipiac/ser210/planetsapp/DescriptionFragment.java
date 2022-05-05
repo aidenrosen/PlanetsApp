@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Name: DescriptionFragment.java
+	Date: 05/04/2022
+	Description: Displays the general description and picture of a selected planet from the MainFragment.
  */
 import android.os.Bundle;
 
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 public class DescriptionFragment extends Fragment
 {
+	//instance variables
 	private int planetKey, imageId;
 	private String news, planet;
 
@@ -33,6 +37,8 @@ public class DescriptionFragment extends Fragment
 		int defaultValue = 0;
 
 		Bundle bundle = this.getArguments();
+
+		//determines which planet data to display depending on what was selected from the ListView
 		if (bundle != null)
 		{
 			int myInt = bundle.getInt(key, defaultValue);
@@ -84,6 +90,7 @@ public class DescriptionFragment extends Fragment
 		}
 	}
 
+	//UI for the fragment; only contains TextView and ImageView, along with Toolbar to share info
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)

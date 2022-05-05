@@ -2,6 +2,10 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Name: CompareFragment.java
+	Date: 05/04/2022
+	Description: Houses the retrieval of Planet data from an API and allows two planets' statistics to be
+	compared based on whatever criteria is selected.
  */
 
 import android.os.AsyncTask;
@@ -27,6 +31,7 @@ import java.net.URL;
 
 public class CompareFragment extends Fragment
 {
+	//instance variables
 	private PlanetHandler planetHandler = new PlanetHandler();
 	Spinner planetOne, planetTwo, statSelected;
 	String p1, p2, sStat, s1, s2;
@@ -46,6 +51,7 @@ public class CompareFragment extends Fragment
 		super.onCreate(savedInstanceState);
 	}
 
+	//interior AsyncTask class that operates to retrieve Planet data from API without running on the main thread
 	class FetchPlanetStat extends AsyncTask<String, Void, String>
 	{
 
@@ -59,6 +65,7 @@ public class CompareFragment extends Fragment
 			String stat2 = "";
 			try
 			{
+				//establish two connections to the API to retrieve separate data for selected planets
 				URL url = new URL(urlAccess + strings[0]);
 				urlConnection = (HttpURLConnection) url.openConnection();
 				urlConnection.setRequestMethod("GET");
@@ -167,6 +174,7 @@ public class CompareFragment extends Fragment
 		@Override
 		protected void onPostExecute(String s)
 		{
+			//sets the TextView's texts depending on what information has been asked for
 			TextView planetName1 = (TextView) getActivity().findViewById(R.id.planetText1);
 			TextView planetName2 = (TextView) getActivity().findViewById(R.id.planetText2);
 			TextView planetStat1 = (TextView) getActivity().findViewById(R.id.statView1);
@@ -181,6 +189,7 @@ public class CompareFragment extends Fragment
 		}
 	}
 
+	//creation of the fragment's UI
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
@@ -205,6 +214,7 @@ public class CompareFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
+				//when the button is clicked, FetchPlanetStat operates with selected info from spinners
 				p1 = (String) planetOne.getSelectedItem();
 				p2 = (String) planetTwo.getSelectedItem();
 				sStat = (String) statSelected.getSelectedItem();
