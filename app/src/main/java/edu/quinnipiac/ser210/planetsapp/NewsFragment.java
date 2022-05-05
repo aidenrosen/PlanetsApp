@@ -46,7 +46,7 @@ public class NewsFragment extends Fragment
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		int defaultValue = 0;
-		news = new String[]{"", "", ""};
+		news = new String[]{"", "", ""}; //Default array of 3 things to initialize it
 	}
 
 	@Override
@@ -67,9 +67,9 @@ public class NewsFragment extends Fragment
 		t1.setText(startNews[0]);
 		t2.setText(startNews[1]);
 		t3.setText(startNews[2]);
-		imageView.setImageResource(R.drawable.mercury);
+		imageView.setImageResource(R.drawable.mercury); //Initialize the fragment to contain mercury's info, since that's the first planet
 
-		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle("");
+		((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle(""); //Remove the title since the action bar is cluttered
 		return mView;
 	}
 
@@ -89,7 +89,7 @@ public class NewsFragment extends Fragment
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
 			{
-				switch(PlanetHandler.planets[i].toLowerCase())
+				switch(PlanetHandler.planets[i].toLowerCase()) //Logic for updating fragment once the user selects an item from the spinner
 				{
 					case "mercury":
 						news = getResources().getStringArray(R.array.mercury_news);

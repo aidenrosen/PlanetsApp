@@ -124,13 +124,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			{
 				activity.setBackgroundColor(Color.parseColor("#FFFFFF"));
 			} else activity.setBackgroundColor(Color.parseColor("#00FFFF"));
-			blueMode = !blueMode;
+			blueMode = !blueMode; //Change background color, then save if it's blue or not and invert it
 		}
-		else if(currFrag == R.id.news_frag) return false;
 
 		return super.onOptionsItemSelected(item);
 	}
 
+	//Logic for nav drawer
 	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item)
 	{
@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		else super.onBackPressed();
 	}
 
+
 	@Override
 	public void onClick(int planetKey) {
 //		DescriptionFragment fragment = new DescriptionFragment();
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //		fragment.setArguments(bundle);
 		Bundle bundle = new Bundle();
 		bundle.putInt("planet", planetKey);
-		navController.navigate(R.id.descriptionFragment, bundle);
+		navController.navigate(R.id.descriptionFragment, bundle); //Send which planet the user clicks on to the description fragment
 	}
 
 	public void onSelectFavorite(View view)
