@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Title: FavsArrayAdapter.java
+	Date: 05/04/2022
+	Description: Adapter for ListView used in Favorites tab in order to properly display the Favorite planets selected based on position
  */
 import android.content.Context;
 import android.util.Log;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 
 public class FavsArrayAdapter extends ArrayAdapter<String> {
 
+    //instance variables
     private final Context context;
     private final String[] values;
     private static ArrayList<String> favs;
@@ -28,6 +32,7 @@ public class FavsArrayAdapter extends ArrayAdapter<String> {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
+        //retrieve current Favorites list
         favs = MainFragment.getFavs();
 
     }
@@ -37,7 +42,7 @@ public class FavsArrayAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //creates a View representing a Java object out of the layer
-        View rowView = inflater.inflate(R.layout.favlayout,parent,false); //reference for TextView
+        View rowView = inflater.inflate(R.layout.favlayout,parent,false); //reference for TextView, used for ListView layout
         ImageView icon = (ImageView) rowView.findViewById(R.id.icon);
         TextView textView = (TextView) rowView.findViewById(R.id.label);
         //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);

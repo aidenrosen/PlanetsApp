@@ -2,6 +2,10 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Name: MainFragment.java
+	Date: 05/04/2022
+	Description: Provides the basis for the ListView that displays the planets which lead to DescriptionFragments.
+	Also has info for the planets saved as Favorites.
  */
 import android.content.Context;
 import android.content.Intent;
@@ -36,8 +40,10 @@ import java.util.List;
 public class MainFragment extends Fragment
 {
 
+	//instance variables
 	private static ArrayList<String> favs = new ArrayList<>();
 
+	//interface used to communicate with MainActivity to transport between this and DescriptionFragment
 	public interface ViewChangeListener{
 		public void onClick(int planetKey);
 	}
@@ -60,6 +66,7 @@ public class MainFragment extends Fragment
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+		//add planet names to list adapter
 		String[] planetNames = new String[]{"Mercury", "Venus", "Earth", "Mars", "Jupiter",
 			"Saturn", "Uranus", "Neptune"};
 		PlanetArrayAdapter planetAdapter = new PlanetArrayAdapter(
@@ -69,6 +76,7 @@ public class MainFragment extends Fragment
 		ListView lv = (ListView) view.findViewById(R.id.list);
 		lv.setAdapter(planetAdapter);
 
+		//when clicked on, go to MainActivity's onClick method
 		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -77,6 +85,7 @@ public class MainFragment extends Fragment
 			}
 		});
 
+		//fill in Favs ArrayList<String>
 		PlanetsSQLiteHelper dbHelper = new PlanetsSQLiteHelper(this.getContext());
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 

@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Name: PlanetArrayAdapter.java
+	Date: 05/04/2022
+	Description: Adapter used for the ListView in the MainFragment.
  */
 import android.content.Context;
 import android.database.Cursor;
@@ -37,7 +40,7 @@ public class PlanetArrayAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //creates a View representing a Java object out of the layer
-        View rowView = inflater.inflate(R.layout.rowlayout,parent,false); //reference for TextView
+        View rowView = inflater.inflate(R.layout.rowlayout,parent,false); //reference for TextView, layout for ListView containing picture, text, and button
         ImageView icon = (ImageView) rowView.findViewById(R.id.icon);
         TextView textView = (TextView) rowView.findViewById(R.id.label);
         ImageButton button = (ImageButton) rowView.findViewById(R.id.favorite);

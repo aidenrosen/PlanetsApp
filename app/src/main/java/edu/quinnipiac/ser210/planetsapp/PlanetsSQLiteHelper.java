@@ -2,6 +2,9 @@ package edu.quinnipiac.ser210.planetsapp;
 /*
 	Project by Aiden Rosen and Joseph Noga
 	For: PlanetsApp
+	Class Name: PlanetsSQLiteHelper.java
+	Date: 05/04/2022
+	Description: Used as a helper to the database used to store Favorites.
  */
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,7 +29,7 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 		super(context, NAME, null, DATABASE_VERSION);
 	}
 
-
+	//if the table doesnt exist, create it
 	@Override
 	public void onCreate(SQLiteDatabase sqLiteDatabase)
 	{
@@ -34,6 +37,7 @@ public class PlanetsSQLiteHelper extends SQLiteOpenHelper
 			sqLiteDatabase.execSQL(CREATE_TABLE);
 	}
 
+	//if the version updates, drop the table if it exists
 	@Override
 	public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1)
 	{

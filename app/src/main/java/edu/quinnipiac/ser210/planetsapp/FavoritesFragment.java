@@ -57,10 +57,11 @@ public class FavoritesFragment extends Fragment {
                 getActivity(),
                 newFavs);
 
-        //ListView
+        //ListView contains all Favorites selected
         ListView lv = (ListView) view.findViewById(R.id.favList);
         lv.setAdapter(favsArrayAdapter);
 
+        //determines the position of each favorite in the ListView for easier reference to DescriptionFragment
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
