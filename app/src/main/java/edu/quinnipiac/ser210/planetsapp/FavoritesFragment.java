@@ -1,5 +1,8 @@
 package edu.quinnipiac.ser210.planetsapp;
-
+/*
+	Project by Aiden Rosen and Joseph Noga
+	For: PlanetsApp
+ */
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;

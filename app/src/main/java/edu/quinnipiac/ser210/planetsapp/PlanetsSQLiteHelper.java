@@ -1,5 +1,8 @@
 package edu.quinnipiac.ser210.planetsapp;
-
+/*
+	Project by Aiden Rosen and Joseph Noga
+	For: PlanetsApp
+ */
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
