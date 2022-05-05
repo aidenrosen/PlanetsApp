@@ -73,6 +73,7 @@ public class NewsFragment extends Fragment
 		return mView;
 	}
 
+	//Inflate the spinner with planet names
 	@Override
 	public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater)
 	{
@@ -81,10 +82,10 @@ public class NewsFragment extends Fragment
 		MenuItem item = menu.findItem(R.id.spinner);
 		Spinner spinner = (Spinner) item.getActionView();
 
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.planets, android.R.layout.simple_spinner_item);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.planets, android.R.layout.simple_spinner_item); //Create adapter
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() //Set listener for when the user selects an item, rather than pushing a button
 		{
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
