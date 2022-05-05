@@ -11,6 +11,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -79,6 +80,7 @@ public class FavoritesFragment extends Fragment {
             }
         });
 
+        ((AppCompatActivity) this.getContext()).getSupportActionBar().setTitle("Favorites");
 
         return view;
     }

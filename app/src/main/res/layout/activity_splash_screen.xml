@@ -13,7 +13,7 @@
 		android:layout_marginTop="79dp"
 		android:layout_marginEnd="16dp"
 		android:layout_marginBottom="71dp"
-		android:text="Welcome to PlanetsApp"
+		android:text="Welcome to PlanetsHelper!"
 		android:textSize="20dp"
 		app:layout_constraintBottom_toTopOf="@+id/imageView3"
 		app:layout_constraintEnd_toEndOf="parent"
